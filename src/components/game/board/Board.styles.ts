@@ -1,18 +1,26 @@
 import styled from "styled-components";
-import { BOARD_LENGTH } from "../../constants/game";
+import { BOARD_LENGTH } from "../../../constants/game";
 
-export const Board = styled.div`
+export const BoardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(${BOARD_LENGTH}, 1fr);
   grid-template-rows: repeat(${BOARD_LENGTH}, 1fr);
-  width: 70%;
-  aspect-ratio: 1 / 1;
-  max-width: 720px; // 데스크톱에서 최대 크기 제한
-  margin: 0 auto;
-  padding: calc(70% / 15 / 2);
   background-color: #E5C29F; // 전통적인 바둑판 베이지 색상
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1 / 1;
+  width: 660px;
+  padding: ${660 / BOARD_LENGTH / 2}px;
+
+  @media (max-width: 1024px) {
+    width: 540px;
+    padding: ${540 / BOARD_LENGTH / 2}px;
+  }
+
+  @media (max-width: 768px) {
+    width: 450px;
+    padding: ${450 / BOARD_LENGTH / 2}px;
+  }
 `;
 
 export const Intersection = styled.div`
