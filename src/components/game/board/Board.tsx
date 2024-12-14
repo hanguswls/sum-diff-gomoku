@@ -1,12 +1,12 @@
 import React from "react";
-import useGame from "../../hooks/useGame";
-import { Board, HorizontalLine, Intersection, VerticalLine,  } from "./Game.styles";
+import useGame from "../../../hooks/useGame";
+import { BoardContainer, HorizontalLine, Intersection, VerticalLine } from "./Board.styles";
 
-function Game() {
+function Board() {
   const { board } = useGame();
 
   return (
-    <Board>
+    <BoardContainer>
       {board.map((row, rowIdx) =>
         <React.Fragment key={rowIdx}>
           {row.map((_, colIdx) =>
@@ -17,8 +17,8 @@ function Game() {
           )}
         </React.Fragment>
       )}
-    </Board>
+    </BoardContainer>
   )
 }
 
-export default Game;
+export default Board;
