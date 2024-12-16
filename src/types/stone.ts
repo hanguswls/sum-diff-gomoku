@@ -12,7 +12,7 @@ export interface StoneState {
 
   whiteStones: StoneCount;
   blackStones: StoneCount;
-  decrementStone: (color: StoneColor, type: StoneType) => void
+  decrementStone: (stone: Stone) => void
 }
 
 export interface Stone {
