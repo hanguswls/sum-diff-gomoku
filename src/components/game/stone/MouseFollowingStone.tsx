@@ -1,11 +1,10 @@
 import useStoneStore from "../../../stores/useStoneStore";
-import { BlackStone, WhiteStone } from "./Stone.styles";
+import { Stone } from "./Stone.styles";
 import { motion } from "motion/react";
 import { useEffect, useState } from 'react';
 
 function MouseFollowingStone() {
  const { selectedStone } = useStoneStore();
- const Stone = (selectedStone?.color === 'white') ? WhiteStone : BlackStone;
 
  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -36,7 +35,7 @@ function MouseFollowingStone() {
        transform: 'translate(-50%,-50%)' // Center the element on the mouse cursor
      }}
    >
-     <Stone>{selectedStone.type}</Stone>
+     <Stone color={selectedStone.color}>{selectedStone.type}</Stone>
    </motion.div>
  );
 }
