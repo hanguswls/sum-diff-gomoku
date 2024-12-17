@@ -12,15 +12,16 @@ function StoneContainer({ color }: { color: StoneColor }) {
   return (
     <StoneCountContainer>
       {(stoneTypes).map(type =>
-        <StoneCount key={type}>
-          <Stone
-            color={color}
-            onClick={() => handleStoneSelect({ type, color })}
-          >
-            {type}
-          </Stone>
-          x {stones[type]}
-        </StoneCount>
+        stones[type] > 0 &&
+          <StoneCount key={type}>
+            <Stone
+              color={color}
+              onClick={() => handleStoneSelect({ type, color })}
+            >
+              {type}
+            </Stone>
+            x {stones[type]}
+          </StoneCount>
       )}
     </StoneCountContainer>
   )
