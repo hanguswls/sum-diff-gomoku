@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { BOARD_LENGTH } from "../constants/game";
-import { Stone, StoneColor, StoneType } from "../types/stone";
+import { Stone, StoneColor } from "../types/stone";
 import useStoneStore from "../stores/useStoneStore";
+import useTurnStore from "../stores/useTurnStore";
 
 function useGame() {
-  const { setSelectedStone } = useStoneStore();
-  const [board, setBoard] = useState<(Stone | null)[][]>(
-  Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
+  const { setSelectedStone, reset: resetStoneStore } = useStoneStore();
+  const { curTurn, reset: resetTurnStore } = useTurnStore();
+  const [board, setBoard] = useState<(Stone | null)[][]>(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
+  const [winner, setWinner] = useState<StoneColor | null>(null);
 
-  const [curTurn, setCurTurn] = useState<StoneColor>('white');
-
+  const reset = () => {
+    resetStoneStore();
+    resetTurnStore();
+    setWinner(null);
+    setBoard(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
+  }
 
   const handleStoneSelect = ({color, type}: Stone) => {
     if (color !== curTurn) {

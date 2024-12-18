@@ -8,4 +8,6 @@ export interface TurnState {
     [key in StoneColor]: boolean;
   }
   finishFirstTurns: (color: StoneColor) => void;
+
+  reset: () => void;
 }

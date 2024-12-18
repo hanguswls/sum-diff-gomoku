@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Stone, StoneColor, StoneState, StoneType } from "../types/stone";
+import { Stone, StoneState } from "../types/stone";
 import { INITIAL_STONES } from "../constants/game";
 
 const useStoneStore = create<StoneState>()((set) => ({
@@ -15,7 +15,13 @@ const useStoneStore = create<StoneState>()((set) => ({
         [stone.type]: state[`${stone.color}Stones`][stone.type] - 1
       }
     }))
-  }
+  },
+
+  reset: () => set({
+    selectedStone: null,
+    whiteStones: INITIAL_STONES,
+    blackStones: INITIAL_STONES
+  })
 }))
 
 export default useStoneStore;

@@ -17,7 +17,15 @@ const useTurnStore = create<TurnState>()((set) => ({
       ...state.isFirstTurns,
       [color]: false
     }
-  }))
+  })),
+
+  reset: () => set({
+    curTurn: FIRST_TURN,
+    isFirstTurns: {
+      'white': true,
+      'black': true,
+    }
+  })
 }))
 
 export default useTurnStore;
