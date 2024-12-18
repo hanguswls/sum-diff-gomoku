@@ -7,7 +7,17 @@ export type StoneCount = {
 };
 
 export interface StoneState {
+  selectedStone: Stone | null;
+  setSelectedStone: (stone: Stone | null) => void;
+
   whiteStones: StoneCount;
   blackStones: StoneCount;
-  decrementStone: (color: StoneColor, type: StoneType) => void
+  decrementStone: (stone: Stone) => void;
+
+  reset: () => void;
+}
+
+export interface Stone {
+  color: StoneColor;
+  type: StoneType;
 }

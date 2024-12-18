@@ -1,19 +1,27 @@
+import useGame from "../../../hooks/useGame";
 import useStoneStore from "../../../stores/useStoneStore";
-import { StoneColor } from "../../../types/stone";
-import { BlackStone, StoneCount, StoneCountContainer, WhiteStone } from "./Stone.styles";
+import { StoneColor, StoneType } from "../../../types/stone";
+import { Stone, StoneCount, StoneCountContainer } from "./Stone.styles";
 
 function StoneContainer({ color }: { color: StoneColor }) {
+  const { handleStoneSelect } = useGame();
   const { whiteStones, blackStones } = useStoneStore();
   const stones = (color === 'white') ? whiteStones : blackStones;
-  const Stone = (color === 'white') ? WhiteStone : BlackStone;
+  const stoneTypes: StoneType[] = [1, 2, 3, 4, 5];
 
   return (
     <StoneCountContainer>
-      {(Object.entries(stones)).map(([type, count]) =>
-        <StoneCount>
-          <Stone key={type}>{type}</Stone>
-          x {count}
-        </StoneCount>
+      {(stoneTypes).map(type =>
+        stones[type] > 0 &&
+          <StoneCount key={type}>
+            <Stone
+              color={color}
+              onClick={() => handleStoneSelect({ type, color })}
+            >
+              {type}
+            </Stone>
+            x {stones[type]}
+          </StoneCount>
       )}
     </StoneCountContainer>
   )
