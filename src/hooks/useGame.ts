@@ -31,6 +31,11 @@ function useGame() {
     setSelectedStone({color, type});
   };
 
+  /** Checks if the given row and column are within the board boundaries. */
+  const isInBoard = (row: number, col: number): boolean => {
+    return row >= 0 && row < BOARD_LENGTH && col >= 0 && col < BOARD_LENGTH;
+  }
+
   const isGameOver = (row: number, col: number) : boolean => {
     let whiteSum = 0, blackSum = 0;
     const DIRECTIONS: [number, number][] = [
@@ -49,7 +54,7 @@ function useGame() {
       let nextRow = startRow + dy;
       let nextCol = startCol + dx;
 
-      while(board[nextRow][nextCol]) {
+      while(isInBoard(nextRow, nextCol) && board[nextRow][nextCol]) {
         updateSum(board[nextRow][nextCol] as Stone);
         nextRow += dy;
         nextCol += dx;
