@@ -31,6 +31,52 @@ function useGame() {
     setSelectedStone({color, type});
   };
 
+  const isGameOver = (row: number, col: number) : boolean => {
+    let whiteSum = 0, blackSum = 0;
+    const DIRECTIONS: [number, number][] = [
+      [0, 1], // vertical
+      [1, 0], // horizontal
+      [1, 1], // main-diagonal
+      [-1, 1] // anti-diagonal
+    ];
+
+    const updateSum = (pos: Stone) => {
+      if (pos.color === 'white') whiteSum += pos.type;
+      else blackSum += pos.type;
+    }
+
+    const scanDirection = (startRow: number, startCol: number, dy: number, dx: number) => {
+      let nextRow = startRow + dy;
+      let nextCol = startCol + dx;
+
+      while(board[nextRow][nextCol]) {
+        updateSum(board[nextRow][nextCol] as Stone);
+        nextRow += dy;
+        nextCol += dx;
+      }
+    };
+
+    return DIRECTIONS.some(([dx, dy]: [number, number]) => {
+      whiteSum = 0, blackSum = 0;
+
+      if (!board[row][col]) return false;
+      updateSum(board[row][col]);
+
+      scanDirection(row, col, dy, dx);    // positive direction
+      scanDirection(row, col, -dy, -dx);  // negative direction
+
+      if (whiteSum - blackSum === WINNING_SCORE) {
+        setWinner('white');
+        return true;
+      }
+      if (blackSum - whiteSum === WINNING_SCORE) {
+        setWinner('black');
+        return true;
+      }
+      return false;
+    })
+  }
+
   return {
     board,
     handleStoneSelect,

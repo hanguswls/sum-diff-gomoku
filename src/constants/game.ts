@@ -13,4 +13,6 @@ export const INITIAL_STONES: StoneCount = {
 } as const;
 
 export const FIRST_TURN: StoneColor = 'white';
-export const MAX_FIRST_TURN_STONE_TYPE: StoneType = 3; 
+export const MAX_FIRST_TURN_STONE_TYPE: StoneType = 3;
+
+export const WINNING_SCORE = 16;
