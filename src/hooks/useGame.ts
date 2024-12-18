@@ -5,8 +5,8 @@ import useStoneStore from "../stores/useStoneStore";
 import useTurnStore from "../stores/useTurnStore";
 
 function useGame() {
-  const { setSelectedStone, reset: resetStoneStore } = useStoneStore();
-  const { curTurn, isFirstTurns, reset: resetTurnStore } = useTurnStore();
+  const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
+  const { curTurn, switchTurn, isFirstTurns, finishFirstTurns, reset: resetTurnStore } = useTurnStore();
   const [board, setBoard] = useState<(Stone | null)[][]>(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
   const [winner, setWinner] = useState<StoneColor | null>(null);
 
@@ -82,9 +82,34 @@ function useGame() {
     })
   }
 
+  const playStone = (row: number, col: number, stone: Stone) => {
+    if (!isInBoard(row, col)) return;
+    if (board[row][col]) {
+      alert('이미 돌이 놓여진 자리입니다.');
+      return;
+    }
+    decrementStone(stone);
+
+    board[row][col] = { color: stone.color, type: stone.type };
+    const newBoard = board.map(row => [...row]);
+    setBoard(newBoard);
+
+    if (isGameOver(row, col)) return;
+
+    if (isFirstTurns[stone.color]) finishFirstTurns(curTurn);
+    switchTurn();
+  }
+
+  const handleIntersectionClick = (row: number, col: number) => {
+    if (!selectedStone) return;
+    playStone(row, col, selectedStone);
+    setSelectedStone(null);
+  }
+
   return {
     board,
     handleStoneSelect,
+    handleIntersectionClick
   }
 }
 

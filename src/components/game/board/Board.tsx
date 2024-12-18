@@ -4,7 +4,7 @@ import { BoardContainer, HorizontalLine, Intersection, VerticalLine } from "./Bo
 import { BoardStone } from "../stone/Stone.styles";
 
 function Board() {
-  const { board, handleIntersectionClick } = useGame();
+  const { board, handleIntersectionClick } = useGame(true);
 
   return (
     <BoardContainer>
