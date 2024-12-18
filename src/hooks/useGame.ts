@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BOARD_LENGTH, MAX_FIRST_TURN_STONE_TYPE, WINNING_SCORE } from "../constants/game";
 import { Stone, StoneColor } from "../types/stone";
 import useStoneStore from "../stores/useStoneStore";
@@ -9,6 +9,14 @@ function useGame() {
   const { curTurn, switchTurn, isFirstTurns, finishFirstTurns, reset: resetTurnStore } = useTurnStore();
   const [board, setBoard] = useState<(Stone | null)[][]>(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
   const [winner, setWinner] = useState<StoneColor | null>(null);
+
+  useEffect(() => {
+    if (!winner) return;
+    winner === 'white'
+    ? alert('백돌이 이겼습니다!')
+    : alert('흑돌이 이겼습니다.');
+    reset();
+  }, [winner])
 
   const reset = () => {
     resetStoneStore();
