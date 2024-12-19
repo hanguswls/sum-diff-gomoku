@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -22,13 +23,14 @@ export const Timer = styled.div`
   color: #E7E5E4;
 `;
 
-export const ButtonGroup = styled.div`
+export const ActionItemGroup = styled.div`
   margin-left: auto;
   display: flex;
   gap: 16px;
 `;
 
-export const IconButton = styled.button`
+const headerItemStyles = css`
+  font-size: 16px;
   display: flex;
   align-items: center;
   background-color: #E7E5E4;
@@ -42,5 +44,18 @@ export const IconButton = styled.button`
 
   svg {
     width: 20px;
+  }
+`;
+
+export const IconButton = styled.button`
+ ${headerItemStyles}
+`;
+
+export const StyledLink = styled(Link)`
+  ${headerItemStyles};
+  text-decoration: none;
+
+  &:visited {
+    color: inherit;
   }
 `;
