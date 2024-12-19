@@ -38,6 +38,7 @@ export const IconButton = styled.button`
   gap: 8px;
   padding: 6px 12px;
   cursor: pointer;
+  z-index: 1;
 
   svg {
     width: 20px;
