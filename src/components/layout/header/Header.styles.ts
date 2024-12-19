@@ -11,6 +11,8 @@ export const HeaderContainer = styled.header`
 
 export const TitleImg = styled.img`
   height: 32px;
+  cursor: pointer;
+  z-index: 1;
 `;
 
 export const Timer = styled.div`
@@ -54,8 +56,4 @@ export const IconButton = styled.button`
 export const StyledLink = styled(Link)`
   ${headerItemStyles};
   text-decoration: none;
-
-  &:visited {
-    color: inherit;
-  }
 `;

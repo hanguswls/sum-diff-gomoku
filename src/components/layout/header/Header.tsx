@@ -3,14 +3,20 @@ import { ActionItemGroup, HeaderContainer, IconButton, StyledLink, Timer, TitleI
 import title from '/title.svg';
 import useTimer from "../../../hooks/useTimer";
 import useGame from "../../../hooks/useGame";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const { displayTime } = useTimer();
   const { handleRetryButtonClick } = useGame();
+  const navigate = useNavigate();
 
   return (
     <HeaderContainer>
-      <TitleImg src={title} alt="합차오목 타이틀" />
+      <TitleImg
+        src={title}
+        alt="합차오목 타이틀"
+        onClick={() => navigate('/')}
+      />
       <Timer>{ displayTime }</Timer>
       <ActionItemGroup>
         <IconButton onClick={handleRetryButtonClick}>
