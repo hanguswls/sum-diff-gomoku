@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RuleContainer = styled.div`
+export const Container = styled.div`
   flex: 1;
   display: flex;
   padding: 100px 300px;
@@ -14,13 +14,13 @@ export const RuleContainer = styled.div`
   }
 `;
 
-export const RuleHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
 
-export const RuleTitle = styled.h1`
+export const Title = styled.h1`
   font-size: 36px;
   font-weight: 800;
 `;
@@ -47,13 +47,13 @@ export const VideoGuide = styled.a`
   }
 `;
 
-export const RuleContents = styled.div`
+export const Contents = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
 `;
 
-export const RuleContent = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -64,15 +64,15 @@ export const RuleContent = styled.div`
   }
 `;
 
-export const RuleSubTitle = styled.h3`
+export const SubTitle = styled.h3`
   font-size: 24px;
 `;
 
-export const RuleList = styled.ul`
+export const List = styled.ul`
   padding-left: 32px;
 `;
 
-export const RuleItem = styled.li`
+export const Item = styled.li`
   font-size: 16px;
   padding-bottom: 8px;
 `;
