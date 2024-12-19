@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.main`
+export const GameContainer = styled.main`
   flex: 1;
   display: flex;
   justify-content: space-evenly;
