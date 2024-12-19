@@ -28,24 +28,27 @@ export const Timer = styled.div`
 export const ActionItemGroup = styled.div`
   margin-left: auto;
   display: flex;
-  gap: 16px;
+  gap: 8px;
 `;
 
 const headerItemStyles = css`
-  font-size: 16px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   background-color: #E7E5E4;
   color: #57534E;
   border: none;
   border-radius: 12px;
-  gap: 8px;
-  padding: 6px 12px;
+  padding: 8px;
   cursor: pointer;
   z-index: 1;
 
   svg {
-    width: 20px;
+    height: 16px;
+  }
+
+  &:hover {
+    filter: brightness(0.8);
   }
 `;
 
