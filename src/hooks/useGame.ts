@@ -3,11 +3,12 @@ import { BOARD_LENGTH, MAX_FIRST_TURN_STONE_TYPE, WINNING_SCORE } from "../const
 import { Stone, StoneColor } from "../types/stone";
 import useStoneStore from "../stores/useStoneStore";
 import useTurnStore from "../stores/useTurnStore";
+import useBoardStore from "../stores/useBoardStore";
 
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
   const { curTurn, switchTurn, isFirstTurns, finishFirstTurns, reset: resetTurnStore } = useTurnStore();
-  const [board, setBoard] = useState<(Stone | null)[][]>(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
+  const { board, placeStoneAt } = useBoardStore();
   const [winner, setWinner] = useState<StoneColor | null>(null);
 
   useEffect(() => {
@@ -22,7 +23,6 @@ function useGame() {
     resetStoneStore();
     resetTurnStore();
     setWinner(null);
-    setBoard(Array.from({ length: BOARD_LENGTH }, () => Array(BOARD_LENGTH).fill(null)));
   }
 
   const handleStoneSelect = ({ color, type }: Stone) => {
@@ -44,7 +44,7 @@ function useGame() {
     return row >= 0 && row < BOARD_LENGTH && col >= 0 && col < BOARD_LENGTH;
   }
 
-  const isGameOver = (row: number, col: number) : boolean => {
+  const isGameOver = (row: number, col: number, stone: Stone) : boolean => {
     let whiteSum = 0, blackSum = 0;
     const DIRECTIONS: [number, number][] = [
       [0, 1], // vertical
@@ -71,9 +71,7 @@ function useGame() {
 
     return DIRECTIONS.some(([dx, dy]: [number, number]) => {
       whiteSum = 0, blackSum = 0;
-
-      if (!board[row][col]) return false;
-      updateSum(board[row][col]);
+      updateSum(stone);
 
       scanDirection(row, col, dy, dx);    // positive direction
       scanDirection(row, col, -dy, -dx);  // negative direction
@@ -98,11 +96,9 @@ function useGame() {
     }
     decrementStone(stone);
 
-    board[row][col] = { color: stone.color, type: stone.type };
-    const newBoard = board.map(row => [...row]);
-    setBoard(newBoard);
+    placeStoneAt(row, col, stone);
 
-    if (isGameOver(row, col)) return;
+    if (isGameOver(row, col, stone)) return;
 
     if (isFirstTurns[stone.color]) finishFirstTurns(curTurn);
     switchTurn();
@@ -117,7 +113,7 @@ function useGame() {
   return {
     board,
     handleStoneSelect,
-    handleIntersectionClick
+    handleIntersectionClick,
   }
 }
 
