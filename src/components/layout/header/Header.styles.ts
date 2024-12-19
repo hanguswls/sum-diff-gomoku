@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -10,6 +11,8 @@ export const HeaderContainer = styled.header`
 
 export const TitleImg = styled.img`
   height: 32px;
+  cursor: pointer;
+  z-index: 1;
 `;
 
 export const Timer = styled.div`
@@ -22,24 +25,38 @@ export const Timer = styled.div`
   color: #E7E5E4;
 `;
 
-export const ButtonGroup = styled.div`
+export const ActionItemGroup = styled.div`
   margin-left: auto;
   display: flex;
-  gap: 16px;
+  gap: 8px;
 `;
 
-export const IconButton = styled.button`
+const headerItemStyles = css`
+  font-size: 12px;
   display: flex;
   align-items: center;
   background-color: #E7E5E4;
   color: #57534E;
   border: none;
   border-radius: 12px;
-  gap: 8px;
-  padding: 6px 12px;
+  padding: 8px;
   cursor: pointer;
+  z-index: 1;
 
   svg {
-    width: 20px;
+    height: 16px;
   }
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+`;
+
+export const IconButton = styled.button`
+ ${headerItemStyles}
+`;
+
+export const StyledLink = styled(Link)`
+  ${headerItemStyles};
+  text-decoration: none;
 `;
