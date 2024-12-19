@@ -3,6 +3,7 @@ import Footer from './components/layout/footer/Footer'
 import Header from './components/layout/header/Header'
 import { Layout } from './components/layout/Layout.styles'
 import Game from './pages/game/Game'
+import Rule from './pages/rule/Rule'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Game />} />
+          <Route path='/rule' element={<Rule />} />
         </Routes>
         <Footer />
       </Layout>
