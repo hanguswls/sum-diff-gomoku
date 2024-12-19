@@ -16,7 +16,7 @@ function useTimer() {
           switchTurn();
           return 180;
         }
-        return timer - 1;
+        return time - 1;
       })
     }, 1000);
 
