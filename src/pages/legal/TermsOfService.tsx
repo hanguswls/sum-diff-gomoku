@@ -1,4 +1,4 @@
-import { Container, Header, Title, VideoGuide, Contents, Content, SubTitle, List, Item, Bold } from '../SharedStyles.styles';
+import { Container, Header, Title, Contents, Content, SubTitle, List, Item, Bold } from '../SharedStyles.styles';
 
 function TermsOfService () {
   return (
