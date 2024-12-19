@@ -8,7 +8,7 @@ import useBoardStore from "../stores/useBoardStore";
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
   const { curTurn, switchTurn, isFirstTurns, finishFirstTurns, reset: resetTurnStore } = useTurnStore();
-  const { board, placeStoneAt } = useBoardStore();
+  const { board, placeStoneAt, reset: resetBoardStore } = useBoardStore();
   const [winner, setWinner] = useState<StoneColor | null>(null);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ function useGame() {
   const reset = () => {
     resetStoneStore();
     resetTurnStore();
+    resetBoardStore();
     setWinner(null);
   }
 
@@ -110,10 +111,13 @@ function useGame() {
     setSelectedStone(null);
   }
 
+  const handleRetryButtonClick = () => reset();
+
   return {
     board,
     handleStoneSelect,
     handleIntersectionClick,
+    handleRetryButtonClick
   }
 }
 
