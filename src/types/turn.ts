@@ -4,10 +4,8 @@ export interface TurnState {
   curTurn: StoneColor;
   switchTurn: () => void;
 
-  isFirstTurns: {
-    [key in StoneColor]: boolean;
-  }
-  finishFirstTurns: (color: StoneColor) => void;
+  isFirstTurn: boolean;
+  finishFirstTurn: () => void;
 
   reset: () => void;
 }

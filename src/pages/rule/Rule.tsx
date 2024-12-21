@@ -25,7 +25,7 @@ function Rule() {
             <Item><Bold>백돌이 선공</Bold>입니다.</Item>
             <Item>각 플레이어는 <Bold>1~5까지의 숫자 돌을 각각 4개씩</Bold> 받습니다. (총 20개)</Item>
             <Item>플레이어는 턴을 번갈아가며 돌을 하나씩 놓습니다.</Item>
-            <Item><Bold>첫 수는</Bold> 반드시 <Bold>3 이하</Bold>의 숫자 돌만 놓을 수 있습니다.</Item>
+            <Item><Bold>선공의 첫 수는</Bold> 반드시 <Bold>3 이하</Bold>의 숫자 돌만 놓을 수 있습니다.</Item>
           </List>
         </Content>
         <Content>

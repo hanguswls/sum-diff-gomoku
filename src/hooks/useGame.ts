@@ -7,7 +7,7 @@ import useBoardStore from "../stores/useBoardStore";
 
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
-  const { curTurn, switchTurn, isFirstTurns, finishFirstTurns, reset: resetTurnStore } = useTurnStore();
+  const { curTurn, switchTurn, isFirstTurn, finishFirstTurn, reset: resetTurnStore } = useTurnStore();
   const { board, placeStoneAt, reset: resetBoardStore } = useBoardStore();
   const [winner, setWinner] = useState<StoneColor | null>(null);
 
@@ -33,7 +33,7 @@ function useGame() {
       : alert('흑돌 차례입니다.');
       return;
     }
-    if (isFirstTurns[color] && type > MAX_FIRST_TURN_STONE_TYPE) {
+    if (isFirstTurn && type > MAX_FIRST_TURN_STONE_TYPE) {
       alert(`첫 수에는 ${MAX_FIRST_TURN_STONE_TYPE} 이하의 돌만 놓을 수 있습니다`);
       return;
     }
@@ -101,7 +101,7 @@ function useGame() {
 
     if (isGameOver(row, col, stone)) return;
 
-    if (isFirstTurns[stone.color]) finishFirstTurns(curTurn);
+    if (isFirstTurn) finishFirstTurn();
     switchTurn();
   }
 

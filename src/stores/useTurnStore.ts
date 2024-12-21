@@ -8,23 +8,12 @@ const useTurnStore = create<TurnState>()((set) => ({
     curTurn: state.curTurn === 'white' ? 'black' : 'white'
   })),
 
-  isFirstTurns: {
-    'white': true,
-    'black': true,
-  },
-  finishFirstTurns: (color) => set((state) => ({
-    isFirstTurns: {
-      ...state.isFirstTurns,
-      [color]: false
-    }
-  })),
+  isFirstTurn: true,
+  finishFirstTurn: () => set({ isFirstTurn: false }),
 
   reset: () => set({
     curTurn: FIRST_TURN,
-    isFirstTurns: {
-      'white': true,
-      'black': true,
-    }
+    isFirstTurn: true,
   })
 }))
 
