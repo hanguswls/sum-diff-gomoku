@@ -16,3 +16,5 @@ export const FIRST_TURN: StoneColor = 'white';
 export const MAX_FIRST_TURN_STONE_TYPE: StoneType = 3;
 
 export const WINNING_SCORE = 16;
+
+export const TURN_TIME_LIMIT = 60;
