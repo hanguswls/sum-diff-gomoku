@@ -27,7 +27,7 @@ function PrivacyPolicy() {
         <Content>
           <SubTitle>3. 개인정보 관련 문의</SubTitle>
           <List>
-            <Item>개인정보와 관련된 문의사항은 hanguswls@naver.com으로 연락 주시기 바랍니다.</Item>
+            <Item>개인정보와 관련된 문의사항은 [hanguswls@naver.com]으로 연락 주시기 바랍니다.</Item>
           </List>
         </Content>
         <Content>
