@@ -7,14 +7,16 @@ const useTurnStore = create<TurnState>()((set) => ({
   switchTurn: () => set((state) => ({
     curTurn: state.curTurn === 'white' ? 'black' : 'white'
   })),
+  resetCount: 0,
 
   isFirstTurn: true,
   finishFirstTurn: () => set({ isFirstTurn: false }),
 
-  reset: () => set({
+  reset: () => set((state) => ({
     curTurn: FIRST_TURN,
     isFirstTurn: true,
-  })
+    resetCount: state.resetCount + 1,
+  }))
 }))
 
 export default useTurnStore;

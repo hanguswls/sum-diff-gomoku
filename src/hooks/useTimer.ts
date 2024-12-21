@@ -4,7 +4,7 @@ import { TURN_TIME_LIMIT } from "../constants/game";
 import { useLocation } from "react-router-dom";
 
 function useTimer() {
-  const { curTurn, switchTurn } = useTurnStore();
+  const { curTurn, switchTurn, resetCount } = useTurnStore();
   const [timer, setTimer] = useState(TURN_TIME_LIMIT);
   const { pathname } = useLocation();
 
@@ -26,7 +26,7 @@ function useTimer() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [curTurn])
+  }, [curTurn, resetCount])
 
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
