@@ -1,6 +1,6 @@
 import { BookOpen, RotateCcw } from "lucide-react";
 import { ActionItemGroup, HeaderContainer, IconButton, StyledLink, Timer, TitleImg } from "./Header.styles";
-import title from '/title.svg';
+import title from '../../../assets/title.svg';
 import useTimer from "../../../hooks/useTimer";
 import useGame from "../../../hooks/useGame";
 import { useLocation, useNavigate } from "react-router-dom";
