@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import useTurnStore from "../stores/useTurnStore";
 import { TURN_TIME_LIMIT } from "../constants/game";
+import { useLocation } from "react-router-dom";
 
 function useTimer() {
   const { curTurn, switchTurn } = useTurnStore();
   const [timer, setTimer] = useState(TURN_TIME_LIMIT);
+  const { pathname } = useLocation();
 
   useEffect(() => {
+    if (pathname !== '/') return;
+
     setTimer(TURN_TIME_LIMIT);
 
     const interval = setInterval(() => {
