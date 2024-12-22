@@ -69,14 +69,14 @@ export const StoneCount = styled.div`
   font-weight: 700;
 `;
 
-export const StoneCountContainer = styled.div<{ isMyTurn: boolean }>`
+export const StoneCountContainer = styled.div<{ $isMyTurn: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 16px;
   border-radius: 16px;
 
-  background-color: ${({ isMyTurn }) => isMyTurn && 'rgba(255, 154, 139, 0.5)'};
+  background-color: ${({ $isMyTurn }) => $isMyTurn && 'rgba(255, 154, 139, 0.5)'};
 `;
 
 export const SelectableStone = styled.button<{ color: StoneColor }>`

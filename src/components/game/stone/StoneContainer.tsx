@@ -13,7 +13,7 @@ function StoneContainer({ color }: { color: StoneColor }) {
   const isMyTurn: boolean = color === curTurn;
 
   return (
-    <StoneCountContainer isMyTurn={isMyTurn}>
+    <StoneCountContainer $isMyTurn={isMyTurn}>
       {(stoneTypes).map(type =>
         stones[type] > 0 &&
           <StoneCount key={type}>
