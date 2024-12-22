@@ -1,6 +1,6 @@
 import useStartGameModal from "../../hooks/useStartGameModal";
 import { SelectableStone } from "../game/stone/Stone.styles";
-import { Button, ButtonGroup, ModalContainer, Overlay, SelectorContainer, Title } from "./StartGameModal.styles";
+import { Button, ButtonGroup, ModalContainer, Overlay, SelectorContainer, StyledLink, Title } from "./StartGameModal.styles";
 
 function StartGameModal() {
   const { isModalOpen, handleStoneSelect, handleStartButtonClick } = useStartGameModal();
@@ -22,7 +22,7 @@ function StartGameModal() {
         </SelectorContainer>
         <ButtonGroup>
           <Button onClick={handleStartButtonClick}>시작하기</Button>
-          <Button>게임 규칙</Button>
+          <StyledLink to='/rule'>게임규칙</StyledLink>
         </ButtonGroup>
       </ModalContainer>
     </Overlay>

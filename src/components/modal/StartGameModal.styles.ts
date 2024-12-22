@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Overlay = styled.div`
@@ -37,7 +38,7 @@ export const ButtonGroup = styled.div`
   gap: 10px;
 `;
 
-export const Button = styled.div`
+const baseButtonStyle = `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,8 +48,18 @@ export const Button = styled.div`
   border-radius: 12px;
   padding: 8px;
   cursor: pointer;
+  font-size: 16px;
 
   &:hover {
     filter: brightness(0.8);
   }
+`;
+
+export const Button = styled.button`
+  ${baseButtonStyle};
+`;
+
+export const StyledLink = styled(Link)`
+  ${baseButtonStyle};
+  text-decoration: none;
 `;
