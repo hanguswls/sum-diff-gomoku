@@ -9,14 +9,14 @@ const stoneVariants = {
     box-shadow: inset -3px -3px 8px 3px rgba(0,0,0,0.15);
   `,
   black: css`
-  color: white;
-  position: relative;
-  background: linear-gradient(
-    to bottom,
-    #666666 0%,
-    #4A4A4A 40%,
-    #1A1A1A 70%,
-    #000000 100%
+    color: white;
+    position: relative;
+    background: linear-gradient(
+      to bottom,
+      #666666 0%,
+      #4A4A4A 40%,
+      #1A1A1A 70%,
+      #000000 100%
   );
 
   &::after {
@@ -34,13 +34,17 @@ const stoneVariants = {
   `
 }
 
-export const Stone = styled.div<{ color: StoneColor}>`
+const baseStoneStyle = css`
   align-content: center;
   border-radius: 50%;
   aspect-ratio: 1 / 1;
+  cursor: pointer;
+`;
+
+export const Stone = styled.div<{ color: StoneColor}>`
+  ${baseStoneStyle};
   width: 40px;
   font-weight: 700;
-  cursor: pointer;
 
   ${({ color }) => stoneVariants[color]}
 
@@ -69,4 +73,38 @@ export const StoneCountContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+`;
+
+export const SelectableStone = styled.button<{ color: StoneColor }>`
+  ${baseStoneStyle};
+  ${({ color }) => stoneVariants[color]}
+
+  width: 40px;
+  position: relative;
+  border: none;
+  transition: transform 0.2 ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    transition: border-color 0.2 ease;
+    transform: scale(1);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus::before,
+  &:active::before {
+    border-color: #FF9A8B;
+  }
+
+  &::after {
+    width: 24px;
+    filter: blur(24px);
+  }
 `;
