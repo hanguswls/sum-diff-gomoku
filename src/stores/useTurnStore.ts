@@ -1,19 +1,32 @@
 import { create } from "zustand";
-import { FIRST_TURN } from "../constants/game";
-import { TurnState } from "../types/turn";
+import { StoneColor } from "../types/stone";
+import { DEFAULT_FIRST_TURN } from "../constants/game";
+
+export interface TurnState {
+  curTurn: StoneColor;
+  switchTurn: () => void;
+
+  isFirstTurn: boolean;
+  finishFirstTurn: () => void;
+  setFirstTurn: (color: StoneColor) => void;
+
+  resetCount: number;
+  reset: () => void;
+}
 
 const useTurnStore = create<TurnState>()((set) => ({
-  curTurn: FIRST_TURN,
+  curTurn: DEFAULT_FIRST_TURN,
   switchTurn: () => set((state) => ({
     curTurn: state.curTurn === 'white' ? 'black' : 'white'
   })),
-  resetCount: 0,
 
   isFirstTurn: true,
   finishFirstTurn: () => set({ isFirstTurn: false }),
+  setFirstTurn: (color: StoneColor) => set({ curTurn: color }),
 
+  resetCount: 0,
   reset: () => set((state) => ({
-    curTurn: FIRST_TURN,
+    curTurn: DEFAULT_FIRST_TURN,
     isFirstTurn: true,
     resetCount: state.resetCount + 1,
   }))
