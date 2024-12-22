@@ -4,11 +4,13 @@ import { Stone, StoneColor } from "../types/stone";
 import useStoneStore from "../stores/useStoneStore";
 import useTurnStore from "../stores/useTurnStore";
 import useBoardStore from "../stores/useBoardStore";
+import useStartGameModal from "./useStartGameModal";
 
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
   const { curTurn, switchTurn, isFirstTurn, finishFirstTurn, reset: resetTurnStore } = useTurnStore();
   const { board, placeStoneAt, reset: resetBoardStore } = useBoardStore();
+  const { openModal } = useStartGameModal();
   const [winner, setWinner] = useState<StoneColor | null>(null);
 
   useEffect(() => {
@@ -24,6 +26,7 @@ function useGame() {
     resetTurnStore();
     resetBoardStore();
     setWinner(null);
+    openModal();
   }
 
   const handleStoneSelect = ({ color, type }: Stone) => {

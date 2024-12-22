@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import useTurnStore from "../stores/useTurnStore";
 import { TURN_TIME_LIMIT } from "../constants/game";
 import { useLocation } from "react-router-dom";
+import useStartGameModal from "./useStartGameModal";
 
 function useTimer() {
   const { curTurn, switchTurn, resetCount } = useTurnStore();
   const [timer, setTimer] = useState(TURN_TIME_LIMIT);
   const { pathname } = useLocation();
+  const { isModalOpen } = useStartGameModal();
 
   useEffect(() => {
     if (pathname !== '/') return;
+    if (isModalOpen) return;
 
     setTimer(TURN_TIME_LIMIT);
 
@@ -26,7 +29,7 @@ function useTimer() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [curTurn, resetCount])
+  }, [curTurn, resetCount, isModalOpen])
 
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
