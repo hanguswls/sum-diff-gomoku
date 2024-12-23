@@ -8,6 +8,7 @@ export const Container = styled.div`
   gap: 48px;
   color: var(--soft-black);
   text-align: left;
+  caret-color: transparent;
 
   @media (max-width: 1024px) {
     padding: 60px 90px;

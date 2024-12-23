@@ -23,6 +23,7 @@ export const Timer = styled.div`
   display: flex;
   justify-content: center;
   color: #E7E5E4;
+  user-select: none;
 `;
 
 export const ActionItemGroup = styled.div`
@@ -41,6 +42,7 @@ const headerItemStyles = css`
   border-radius: 12px;
   padding: 8px;
   cursor: pointer;
+  user-select: none;
   z-index: 1;
 
   svg {

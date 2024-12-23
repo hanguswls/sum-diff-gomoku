@@ -19,6 +19,7 @@ export const ModalContainer = styled.div`
   padding: 64px;
   gap: 48px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  user-select: none;
 `;
 
 export const Title = styled.h2`

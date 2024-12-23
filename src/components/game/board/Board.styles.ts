@@ -26,6 +26,7 @@ export const BoardContainer = styled.div`
 export const Intersection = styled.div`
   position: relative;
   cursor: pointer;
+  user-select: none;
   border-radius: 50%;
   transition: 0.2s 0.2s cubic-bezier(0.4, 0, 1, 1);
 

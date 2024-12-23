@@ -39,6 +39,7 @@ const baseStoneStyle = css`
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   cursor: pointer;
+  user-select: none;
 `;
 
 export const Stone = styled.div<{ color: StoneColor}>`
@@ -67,6 +68,7 @@ export const StoneCount = styled.div`
   gap: 16px;
   align-items: center;
   font-weight: 700;
+  user-select: none;
 `;
 
 export const StoneCountContainer = styled.div<{ $isMyTurn: boolean }>`
