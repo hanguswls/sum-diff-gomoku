@@ -31,12 +31,8 @@ function useTimer() {
     return () => clearInterval(interval);
   }, [curTurn, resetCount, isModalOpen])
 
-  const minutes = Math.floor(timer / 60);
-  const seconds = timer % 60;
-  const displayTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
   return {
-    displayTime
+    timer
   }
 }
 

@@ -6,7 +6,7 @@ import useGame from "../../../hooks/useGame";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
-  const { displayTime } = useTimer();
+  const { timer } = useTimer();
   const { pathname } = useLocation();
   const { handleRetryButtonClick } = useGame();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Header() {
       />
       {pathname === '/' &&
         <>
-          <Timer>{ displayTime }</Timer>
+          <Timer>{ timer }</Timer>
           <ActionItemGroup>
             <IconButton onClick={handleRetryButtonClick}>
               <RotateCcw />
