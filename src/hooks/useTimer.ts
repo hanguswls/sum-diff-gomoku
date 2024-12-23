@@ -19,9 +19,10 @@ function useTimer() {
     const interval = setInterval(() => {
       setTimer(time => {
         if (time <= 0) {
-          clearInterval(interval);
-          alert(`제한시간 ${TURN_TIME_LIMIT}초가 지나 턴이 바뀝니다.`);
-          switchTurn();
+          setTimeout(() => {
+            alert(`제한시간 ${TURN_TIME_LIMIT}초가 지나 턴이 바뀝니다.`);
+            switchTurn();
+          }, 0);
           return TURN_TIME_LIMIT;
         }
         return time - 1;
