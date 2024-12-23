@@ -20,7 +20,7 @@ function useTimer() {
       setTimer(time => {
         if (time <= 0) {
           clearInterval(interval);
-          alert('제한시간 1분이 지나 턴이 바뀝니다.');
+          alert(`제한시간 ${TURN_TIME_LIMIT}초가 지나 턴이 바뀝니다.`);
           switchTurn();
           return TURN_TIME_LIMIT;
         }
