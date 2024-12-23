@@ -9,8 +9,8 @@ export const BoardContainer = styled.div`
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   aspect-ratio: 1 / 1;
-  width: 660px;
-  padding: ${660 / BOARD_LENGTH / 2}px;
+  width: 560px;
+  padding: ${560 / BOARD_LENGTH / 2}px;
 
   @media (max-width: 1024px) {
     width: 540px;

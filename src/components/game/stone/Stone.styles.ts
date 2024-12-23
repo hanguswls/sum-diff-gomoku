@@ -44,13 +44,13 @@ const baseStoneStyle = css`
 
 export const Stone = styled.div<{ color: StoneColor}>`
   ${baseStoneStyle};
-  width: 40px;
+  width: 35px;
   font-weight: 700;
 
   ${({ color }) => stoneVariants[color]}
 
   @media (max-width: 1024px) {
-    width: 33px;
+    width: 34px;
   }
 
   @media (max-width: 768px) {
@@ -93,7 +93,7 @@ export const SelectableStone = styled.button<{ color: StoneColor }>`
   &::before {
     content: '';
     position: absolute;
-    inset: -5px;
+    inset: -4px;
     border-radius: 50%;
     border: 5px solid transparent;
     transition: border-color 0.2 ease;
