@@ -28,7 +28,7 @@ export const Intersection = styled.div`
   cursor: pointer;
   user-select: none;
   border-radius: 50%;
-  transition: 0.1s 0.1s cubic-bezier(0.4, 0, 1, 1);
+  transition: 0.05s 0.05s ease-in-out;
 
   &:hover {
     background-color: rgba(255, 0, 0, 0.4);
