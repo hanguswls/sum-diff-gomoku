@@ -1,4 +1,3 @@
-// styles/Stone.styles.js
 import styled, { css } from "styled-components";
 import { StoneColor } from "../../../types/stone";
 
@@ -76,6 +75,7 @@ export const StoneCountContainer = styled.div<{ $isMyTurn: boolean }>`
   flex-direction: column;
   gap: 24px;
   padding: 16px;
+  margin: 40px;
   border-radius: 16px;
 
   background-color: ${({ $isMyTurn }) => $isMyTurn && 'rgba(255, 154, 139, 0.5)'};
