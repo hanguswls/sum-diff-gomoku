@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 
 function useAdBanner(adUnitIdx: number) {
-  // 세로로 긴 광고, 세로로 긴 광고, 가로로 긴 광고 순서
-  const unit = ["DAN-zd0pXpmaWkUx1a4p","DAN-mItNNPWEO6ft8m0G", "DAN-ibLQcmhPDol10Hqw"];
+  const unit = ["DAN-zd0pXpmaWkUx1a4p","DAN-mItNNPWEO6ft8m0G"];
 
   useEffect(() => {
     const script = document.createElement('script');
