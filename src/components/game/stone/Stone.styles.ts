@@ -106,7 +106,7 @@ export const SelectableStone = styled.button<{ color: StoneColor }>`
 
   &:focus::before,
   &:active::before {
-    border-color: #FF9A8B;
+    border-color: var(--pink);
   }
 
   &::after {
