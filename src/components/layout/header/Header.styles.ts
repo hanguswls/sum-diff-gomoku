@@ -52,6 +52,10 @@ const headerItemStyles = css`
   &:hover {
     filter: brightness(0.8);
   }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export const IconButton = styled.button`
