@@ -5,6 +5,7 @@ import useStoneStore from "../stores/useStoneStore";
 import useTurnStore from "../stores/useTurnStore";
 import useBoardStore from "../stores/useBoardStore";
 import useStartGameModal from "./useStartGameModal";
+import useToastStore from "../stores/useToastStore";
 
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
@@ -12,12 +13,14 @@ function useGame() {
   const { board, placeStoneAt, reset: resetBoardStore } = useBoardStore();
   const { openModal } = useStartGameModal();
   const [winner, setWinner] = useState<StoneColor | null>(null);
+  const { setMessage: setToastMessage, setIsVisible: setIsToastVisible } = useToastStore();
 
   useEffect(() => {
     if (!winner) return;
     winner === 'white'
-    ? alert('백돌이 이겼습니다!')
-    : alert('흑돌이 이겼습니다.');
+    ? setToastMessage('백돌이 이겼습니다!')
+    : setToastMessage('흑돌이 이겼습니다.');
+    setIsToastVisible(true);
     reset();
   }, [winner])
 
@@ -32,12 +35,14 @@ function useGame() {
   const handleStoneSelect = ({ color, type }: Stone) => {
     if (color !== curTurn) {
       curTurn === 'white'
-      ? alert('백돌 차례입니다.')
-      : alert('흑돌 차례입니다.');
+      ? setToastMessage('백돌 차례입니다.')
+      : setToastMessage('흑돌 차례입니다.');
+      setIsToastVisible(true);
       return;
     }
     if (isFirstTurn && type > MAX_FIRST_TURN_STONE_TYPE) {
-      alert(`첫 수에는 ${MAX_FIRST_TURN_STONE_TYPE} 이하의 돌만 놓을 수 있습니다`);
+      setToastMessage(`첫 수에는 ${MAX_FIRST_TURN_STONE_TYPE} 이하의 돌만 놓을 수 있습니다`);
+      setIsToastVisible(true);
       return;
     }
     setSelectedStone({color, type});
@@ -95,7 +100,8 @@ function useGame() {
   const playStone = (row: number, col: number, stone: Stone) => {
     if (!isInBoard(row, col)) return;
     if (board[row][col]) {
-      alert('이미 돌이 놓여진 자리입니다.');
+      setToastMessage('이미 돌이 놓여진 자리입니다.');
+      setIsToastVisible(true);
       return;
     }
     decrementStone(stone);
