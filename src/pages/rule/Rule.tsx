@@ -1,6 +1,6 @@
 import { Bold, Container, Content, Contents, Header, Item, List, SubTitle, Title, VideoGuide } from "../SharedStyles.styles";
-import youtubeIcon from '../../assets/youtube.svg';
-import descriptionImg from '../../assets/rule-description.svg';
+import youtubeIcon from '/youtube.svg';
+import descriptionImg from '/rule-description.svg';
 
 function Rule() {
   return (
