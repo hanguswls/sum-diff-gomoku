@@ -4,7 +4,10 @@ import { BoardContainer, HorizontalLine, Intersection, VerticalLine } from "./Bo
 import { BoardStone } from "../stone/Stone.styles";
 
 function Board() {
-  const { board, handleIntersectionClick } = useGame();
+  const { board, winningPositions, handleIntersectionClick } = useGame();
+
+  const isWinningPosition = (row: number, col: number) =>
+    winningPositions.some(([r, c]) => r === row && c === col);
 
   return (
     <BoardContainer>
@@ -17,7 +20,14 @@ function Board() {
             >
               <VerticalLine />
               <HorizontalLine />
-              { cell && <BoardStone $stoneColor={cell.color}>{ cell.type }</BoardStone> }
+              {cell &&
+                <BoardStone
+                  $stoneColor={cell.color}
+                  $isWinningPosition={isWinningPosition(rowIdx, colIdx)}
+                >
+                  { cell.type }
+                </BoardStone>
+              }
             </Intersection>
           )}
         </React.Fragment>

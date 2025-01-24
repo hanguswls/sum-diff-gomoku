@@ -10,6 +10,9 @@ export interface TurnState {
   finishFirstTurn: () => void;
   setFirstTurn: (color: StoneColor) => void;
 
+  isGameOver: boolean;
+  setGameOver: () => void;
+
   resetCount: number;
   reset: () => void;
 }
@@ -24,12 +27,16 @@ const useTurnStore = create<TurnState>()((set) => ({
   finishFirstTurn: () => set({ isFirstTurn: false }),
   setFirstTurn: (color: StoneColor) => set({ curTurn: color }),
 
+  isGameOver: false,
+  setGameOver: () => set({ isGameOver: true }),
+
   resetCount: 0,
   reset: () => set((state) => ({
     curTurn: DEFAULT_FIRST_TURN,
     isFirstTurn: true,
+    isGameOver: false,
     resetCount: state.resetCount + 1,
-  }))
+  })),
 }))
 
 export default useTurnStore;

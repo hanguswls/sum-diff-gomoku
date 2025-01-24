@@ -17,7 +17,7 @@ const stoneVariants = {
       #1A1A1A 70%,
       #000000 100%
   );
-
+  // Adds a light reflection effect to the black stone
   &::after {
     content: '';
     position: absolute;
@@ -41,6 +41,16 @@ const baseStoneStyle = css`
   user-select: none;
 `;
 
+const highlightFrame = css`
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  transform: scale(1);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+`;
+
 export const Stone = styled.div<{ $stoneColor: StoneColor}>`
   ${baseStoneStyle};
   width: 35px;
@@ -57,9 +67,19 @@ export const Stone = styled.div<{ $stoneColor: StoneColor}>`
   }
 `;
 
-export const BoardStone = styled(Stone)`
+export const BoardStone = styled(Stone)<{ $isWinningPosition: boolean }>`
   position: absolute;
   z-index: 10;
+
+  &::before {
+    ${highlightFrame};
+    ${({ $isWinningPosition }) =>
+      $isWinningPosition &&
+      css`
+        border-color: var(--pink);
+        transform: scale(1.1);
+      `}
+  }
 `;
 
 export const StoneCount = styled.div`
@@ -91,13 +111,7 @@ export const SelectableStone = styled.button<{ $stoneColor: StoneColor }>`
   transition: transform 0.2 ease;
 
   &::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 5px solid transparent;
-    transition: border-color 0.2 ease;
-    transform: scale(1);
+    ${highlightFrame};
   }
 
   &:hover {

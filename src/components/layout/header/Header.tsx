@@ -4,8 +4,10 @@ import title from '/title.svg';
 import useTimer from "../../../hooks/useTimer";
 import useGame from "../../../hooks/useGame";
 import { useLocation, useNavigate } from "react-router-dom";
+import useTurnStore from "../../../stores/useTurnStore";
 
 function Header() {
+  const { isGameOver } = useTurnStore();
   const { timer } = useTimer();
   const { pathname } = useLocation();
   const { handleRetryButtonClick } = useGame();
@@ -20,7 +22,9 @@ function Header() {
       />
       {pathname === '/' &&
         <>
-          <Timer>{ timer }</Timer>
+          {!isGameOver &&
+            <Timer>{ timer }</Timer>
+          }
           <ActionItemGroup>
             <IconButton onClick={handleRetryButtonClick}>
               <RotateCcw />

@@ -9,19 +9,21 @@ import useToastStore from "../stores/useToastStore";
 
 function useGame() {
   const { selectedStone, setSelectedStone, decrementStone, reset: resetStoneStore } = useStoneStore();
-  const { curTurn, switchTurn, isFirstTurn, finishFirstTurn, reset: resetTurnStore } = useTurnStore();
+  const { curTurn, switchTurn, isFirstTurn, finishFirstTurn, reset: resetTurnStore, setGameOver } = useTurnStore();
   const { board, placeStoneAt, reset: resetBoardStore } = useBoardStore();
   const { openModal } = useStartGameModal();
   const [winner, setWinner] = useState<StoneColor | null>(null);
+  const [winningPositions, setWinningPositions] = useState<[Number, Number][]>([]);
   const { setMessage: setToastMessage, setIsVisible: setIsToastVisible } = useToastStore();
 
   useEffect(() => {
     if (!winner) return;
+
     winner === 'white'
     ? setToastMessage('백돌이 이겼습니다!')
     : setToastMessage('흑돌이 이겼습니다.');
     setIsToastVisible(true);
-    reset();
+    setGameOver();
   }, [winner])
 
   const reset = () => {
@@ -29,6 +31,7 @@ function useGame() {
     resetTurnStore();
     resetBoardStore();
     setWinner(null);
+    setWinningPositions([]);
     openModal();
   }
 
@@ -55,6 +58,7 @@ function useGame() {
 
   const isGameOver = (row: number, col: number, stone: Stone) : boolean => {
     let whiteSum = 0, blackSum = 0;
+    const positions: [number, number][] = [];
     const DIRECTIONS: [number, number][] = [
       [0, 1], // vertical
       [1, 0], // horizontal
@@ -62,7 +66,8 @@ function useGame() {
       [-1, 1] // anti-diagonal
     ];
 
-    const updateSum = (pos: Stone) => {
+    const updateSum = (pos: Stone, r: number, c: number) => {
+      positions.push([r, c]);
       if (pos.color === 'white') whiteSum += pos.type;
       else blackSum += pos.type;
     }
@@ -72,7 +77,7 @@ function useGame() {
       let nextCol = startCol + dx;
 
       while(isInBoard(nextRow, nextCol) && board[nextRow][nextCol]) {
-        updateSum(board[nextRow][nextCol] as Stone);
+        updateSum(board[nextRow][nextCol] as Stone, nextRow, nextCol);
         nextRow += dy;
         nextCol += dx;
       }
@@ -80,17 +85,20 @@ function useGame() {
 
     return DIRECTIONS.some(([dx, dy]: [number, number]) => {
       whiteSum = 0, blackSum = 0;
-      updateSum(stone);
+      positions.length = 0; // clear previous positions
+      updateSum(stone, row, col);
 
       scanDirection(row, col, dy, dx);    // positive direction
       scanDirection(row, col, -dy, -dx);  // negative direction
 
       if (whiteSum - blackSum === WINNING_SCORE) {
         setWinner('white');
+        setWinningPositions([...positions]);
         return true;
       }
       if (blackSum - whiteSum === WINNING_SCORE) {
         setWinner('black');
+        setWinningPositions([...positions]);
         return true;
       }
       return false;
@@ -124,6 +132,7 @@ function useGame() {
 
   return {
     board,
+    winningPositions,
     handleStoneSelect,
     handleIntersectionClick,
     handleRetryButtonClick
