@@ -35,7 +35,7 @@ function MouseFollowingStone() {
        transform: 'translate(-50%,-50%)' // Center the element on the mouse cursor
      }}
    >
-     <Stone color={selectedStone.color}>{selectedStone.type}</Stone>
+     <Stone $stoneColor={selectedStone.color}>{selectedStone.type}</Stone>
    </motion.div>
  );
 }

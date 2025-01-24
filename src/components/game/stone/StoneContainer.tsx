@@ -18,7 +18,7 @@ function StoneContainer({ color }: { color: StoneColor }) {
         stones[type] > 0 &&
           <StoneCount key={type}>
             <Stone
-              color={color}
+              $stoneColor={color}
               onClick={() => handleStoneSelect({ type, color })}
             >
               {type}

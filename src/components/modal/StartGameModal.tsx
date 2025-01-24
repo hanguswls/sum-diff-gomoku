@@ -12,11 +12,11 @@ function StartGameModal() {
         <Title>선공을 선택하세요</Title>
         <SelectorContainer>
           <SelectableStone
-            color='black'
+            $stoneColor='black'
             onClick={() => handleStoneSelect('black')}
           />
           <SelectableStone
-            color='white'
+            $stoneColor='white'
             onClick={() => handleStoneSelect('white')}
           />
         </SelectorContainer>

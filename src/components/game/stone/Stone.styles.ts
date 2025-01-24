@@ -41,12 +41,12 @@ const baseStoneStyle = css`
   user-select: none;
 `;
 
-export const Stone = styled.div<{ color: StoneColor}>`
+export const Stone = styled.div<{ $stoneColor: StoneColor}>`
   ${baseStoneStyle};
   width: 35px;
   font-weight: 700;
 
-  ${({ color }) => stoneVariants[color]}
+  ${({ $stoneColor }) => stoneVariants[$stoneColor]}
 
   @media (max-width: 1024px) {
     width: 34px;
@@ -81,9 +81,9 @@ export const StoneCountContainer = styled.div<{ $isMyTurn: boolean }>`
   background-color: ${({ $isMyTurn }) => $isMyTurn && 'rgba(255, 154, 139, 0.5)'};
 `;
 
-export const SelectableStone = styled.button<{ color: StoneColor }>`
+export const SelectableStone = styled.button<{ $stoneColor: StoneColor }>`
   ${baseStoneStyle};
-  ${({ color }) => stoneVariants[color]}
+  ${({ $stoneColor }) => stoneVariants[$stoneColor]}
 
   width: 40px;
   position: relative;

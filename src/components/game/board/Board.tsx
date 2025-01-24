@@ -17,7 +17,7 @@ function Board() {
             >
               <VerticalLine />
               <HorizontalLine />
-              { cell && <BoardStone color={cell.color}>{ cell.type }</BoardStone> }
+              { cell && <BoardStone $stoneColor={cell.color}>{ cell.type }</BoardStone> }
             </Intersection>
           )}
         </React.Fragment>
